@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0e0cw52rp0y5"]
+
+[ext_resource type="Script" path="res://Scripts/GPT.gd" id="1_g1sio"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_g1sio")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="GUI"]
+layout_mode = 0
+offset_right = 1157.0
+offset_bottom = 653.0
+
+[node name="ApiKeyTextLine" type="LineEdit" parent="GUI/Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 215.0
+offset_right = 946.0
+offset_bottom = 246.0
+placeholder_text = "ApiKey"
+
+[node name="SayTextLine" type="LineEdit" parent="GUI/Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 258.0
+offset_right = 946.0
+offset_bottom = 289.0
+text = "..."
+placeholder_text = "..."
+
+[node name="SendButton" type="Button" parent="GUI/Panel"]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 257.0
+offset_right = 1034.0
+offset_bottom = 288.0
+text = "Send"
+
+[node name="AnswerTextEdit" type="TextEdit" parent="GUI/Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 297.0
+offset_right = 1034.0
+offset_bottom = 630.0
+placeholder_text = "..."
+editable = false
+wrap_mode = 1
+
+[node name="Label" type="Label" parent="GUI/Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 110.0
+offset_right = 273.0
+offset_bottom = 201.0
+theme_override_font_sizes/font_size = 64
+text = "ChatGPT"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="GUI/Panel/SendButton" to="." method="_on_send_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
